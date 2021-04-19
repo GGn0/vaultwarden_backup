@@ -9,7 +9,7 @@ set -m
 
 echo Entrypoint file has been executed > /entry.log
 
-# Started cron process in bg
+# Spawn cron process in bg
 cron &
 
 echo Cron launched >> /entry.log
@@ -68,5 +68,5 @@ chmod 755 "${CRONJOB_DIR}${CRONJOB_FILE}"
 # Add the cron job to root's crontab
 crontab "${CRONJOB_DIR}${CRONJOB_FILE}"
 
-# Launch start script, it keepsthe container from exiting
+# Launch start script, it prevents the container from exiting
 ./start.sh
