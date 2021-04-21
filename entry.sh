@@ -5,6 +5,9 @@ CRONJOB_FILE=backup_job
 
 # Reference bash and not sh! because sh doesn't have redirects (<<<)
 
+# Save the env variable to make it available to cron
+printenv | grep -i 'LAST_N_BCKUPS' >> /etc/environment
+
 set -m
 
 echo Entrypoint file has been executed > /entry.log
@@ -59,7 +62,7 @@ MIN_STR="$OUTPUT"
 format_cron_string "$BKUP_AT_HOUR" 24
 HOUR_STR="$OUTPUT"
 
-# Write the cron file
+# Write the cron file.
 echo "${MIN_STR}" "${HOUR_STR}" "* * * /./backup.sh" > "${CRONJOB_DIR}${CRONJOB_FILE}"
 echo "# this line is needed for a valid cron file" >> "${CRONJOB_DIR}${CRONJOB_FILE}"
 

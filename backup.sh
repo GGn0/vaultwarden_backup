@@ -6,6 +6,9 @@ BACKUP_FOLDER=bkups/
 DATE_TIME=$(date '+%Y-%m-%d_%H%M')
 TEMP_DIR=/var/tmp/${DATE_TIME}/
 
+# Make environment variables available
+source /etc/environment
+
 echo "Backing up on ${DATE_TIME}" > /backup.log
 
 # Check if the backup folder is already present
@@ -59,8 +62,8 @@ FILE_LIST+=("$(ls -tp1 ${DATA_FOLDER}${BACKUP_FOLDER})")
 IFS=$'\n' read -rd '' -a FILE_ARRAY <<<"${FILE_LIST[@]}"; unset IFS
 
 for i in "${!FILE_ARRAY[@]}"; do
-	echo "checking file ${FILE_ARRAY[$i]}, ($i) " >> /backup.log
-	if [[ "${i}" -ge "${LAST_N_BCKUPS}" ]]; then
+	echo "checking file ${FILE_ARRAY[$i]}, ($i against ${LAST_N_BCKUPS}) " >> /backup.log
+	if [[ "$i" -ge "${LAST_N_BCKUPS}" ]]; then
 		echo "trying to delete ${DATA_FOLDER}${BACKUP_FOLDER}${FILE_ARRAY[$i]}"  >> /backup.log
 		rm -- "${DATA_FOLDER}${BACKUP_FOLDER}${FILE_ARRAY[$i]}"
 		echo "removed ${FILE_ARRAY[$i]} (item $i)" >> /backup.log
