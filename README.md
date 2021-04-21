@@ -27,7 +27,9 @@ ENV LAST_N_BCKUPS=9
 - @ 22:30
 
 > :warning: Don't use spaces! Just use numbers and commas (if needed) to separate them
+
 **LAST_N_BCKUPS** sets the number of newest backups to keep. In this case, when the 10th backup has to be saved, the oldest one will be erased
+
 for other environmental variables to set, refer to the original [bitwardenrs/server](https://hub.docker.com/r/bitwardenrs/server) documentation.
 (for example, SIGNUPS_ALLOWED=false to disable logins or ADMIN_TOKEN=token to give access to the admin page)
 
