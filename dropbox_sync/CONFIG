@@ -2,5 +2,5 @@ export PWD=./PWD
 export RECOVER=./recover
 export UPLOADER=./dropbox_uploader.sh
 export SOURCEDIR=/var/lib/docker/volumes/vaultwarden_volume/_data/bkups
-export REMOTE_FOLDER=pass-backups
+export REMOTE_DIR=pass-backups
 
