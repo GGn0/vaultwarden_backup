@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# cd to script directory
+cd ${BASH_SOURCE%/*}
+
 #-------------------CONFIGS---------------------
 
 source ./CONFIG
