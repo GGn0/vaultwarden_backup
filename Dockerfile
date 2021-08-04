@@ -1,4 +1,4 @@
-FROM bitwardenrs/server:latest
+FROM vaultwarden/server:latest
 
 WORKDIR /
 
@@ -7,7 +7,7 @@ RUN apt-get update
 RUN apt-get install -y -qq --allow-downgrades \
 		--allow-remove-essential \
 		--allow-change-held-packages \
-		cron
+		cron sqlite3
 
 #Set the environment variables
 ENV BKUP_AT_MIN=0

@@ -1,4 +1,4 @@
-# bitwarden_backup
+# Vaultwarden_backup
 The repository contains a modified version of the bitwarden_rs image to implement a periodic backup feature
 
 ## Objective
@@ -30,8 +30,8 @@ ENV LAST_N_BCKUPS=9
 
 **LAST_N_BCKUPS** sets the number of newest backups to keep. In this case, when the 10th backup has to be saved, the oldest one will be erased
 
-for other environmental variables to set, refer to the original [bitwardenrs/server](https://hub.docker.com/r/bitwardenrs/server) documentation.
-(for example, SIGNUPS_ALLOWED=false to disable logins or ADMIN_TOKEN=token to give access to the admin page)
+for other environmental variables to set, refer to the original [vaultwarden/server](https://hub.docker.com/r/vaultwarden/server) documentation.
+(for example, `SIGNUPS_ALLOWED`=false to disable logins or `ADMIN_TOKEN`=token to give access to the admin page)
 
 From the project directory it's possible to build the image with the following command:
 ```sh
@@ -48,7 +48,7 @@ This is necessary to expose the backups to the local machine.
 Next run a container using the image and volume that we just prepared
 
 ```sh
-docker run -d -v volume_name:/data -p XXX:80 --name container_name image_name
+docker run -d --restart always -v volume_name:/data -p XXX:80 --name container_name image_name
 ```
 -d runs the container in detached mode
 -v specifies the volume (__volume_name__) to mount in the container internal directory /data
@@ -61,5 +61,5 @@ TODO
 backup encrypt and upload on dropbox
 
 ## Notes
-The repository is based on [bitwardenrs/server](https://hub.docker.com/r/bitwardenrs/server) on docker hub
+The repository is based on [vaultwarden/server](https://hub.docker.com/r/vaultwarden/server) on docker hub
 The backup upload script uses [this script](https://github.com/andreafabrizi/Dropbox-Uploader) to communicate with dropbox
