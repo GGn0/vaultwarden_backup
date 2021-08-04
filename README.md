@@ -107,6 +107,8 @@ Paste the following code and save the file
     # Call the backup sync script periodically
     0 * * * * /<path_to_repo_clone>/dropbox_sync/sync_backups.sh
     
+
+> ⚠️ Make sure that the file has a trailing newline!!
 > The [cronjob](https://man7.org/linux/man-pages/man5/crontab.5.html) above uploads the files every hour. You can modify the interval according to your needs
 
 ### Restore backups
