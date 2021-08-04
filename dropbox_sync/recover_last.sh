@@ -2,10 +2,7 @@
 
 #-------------------CONFIGS---------------------
 
-PWD=./PWD
-RECOVER=./recover
-UPLOADER=./dropbox_uploader.sh
-REMOTE_FOLDER=bitwarden-backups
+source ./CONFIG
 
 #-----------------------------------------------
 
