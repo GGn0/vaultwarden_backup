@@ -124,7 +124,28 @@ At this point you can proceed with two methods:
 
 #### Restore offline
 
-TODO
+Checkout the name of the container running
+
+    docker ps
+    
+Read the container name under the appropriate column, then stop it
+
+    docker stop container_name
+
+__cd to `dropbox_sync` folder__
+
+Execute the following code
+
+    source ./CONFIG
+    ./recover_last.sh
+    cd ${RECOVER}
+    mv db* db.sqlite3
+    cp * ${SOURCEDIR}/..
+
+Restart the container
+    
+    docker start container_name
+    
 
 #### Restore online
 
