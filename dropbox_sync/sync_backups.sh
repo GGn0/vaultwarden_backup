@@ -2,10 +2,7 @@
 
 #-------------------CONFIGS---------------------
 
-UPLOADER=./dropbox_uploader.sh
-SOURCEDIR=/var/lib/docker/volumes/Bitwarden/_data/bkups
-PWD=./PWD
-REMOTE_DIR=bitwarden-backups
+source ./CONFIG
 
 #-----------------------------------------------
 
