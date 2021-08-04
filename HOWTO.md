@@ -80,7 +80,7 @@ RUN apt-get update
 RUN apt-get install -y -qq --allow-downgrades \
 		--allow-remove-essential \
 		--allow-change-held-packages \
-		cron
+		cron sqlite3
 
 RUN cron
 
@@ -121,7 +121,7 @@ cron &
 # Launch start script, it keeps the container from exiting
 ./start.sh
 ```
-> :warinng: Don't use #!/bin/sh which doesn't have here-strings (will be used later)
+> :warning: Don't use #!/bin/sh which doesn't have here-strings (will be used later)
 
 The dockerfile has been modified to
 ```sh
@@ -133,7 +133,7 @@ RUN apt-get update
 RUN apt-get install -y -qq --allow-downgrades \
 		--allow-remove-essential \
 		--allow-change-held-packages \
-		cron
+		cron sqlite3
 
 # Copy the entry script and make it executable
 ADD entry.sh /entry.sh
