@@ -35,7 +35,7 @@ for other environmental variables to set, refer to the original [vaultwarden/ser
 
 From the project directory it's possible to build the image with the following command:
 ```sh
-docker build --rm -t bitwarden_backup .
+docker build --rm -t vaultwarden_backup .
 ```
 --rm specifies to remove intermediate images used in the building process
 -t assign a tag to the image
@@ -140,6 +140,7 @@ Execute the following code
     ./recover_last.sh
     cd ${RECOVER}
     mv db* db.sqlite3
+    sudo mkdir ${SOURCEDIR} 
     cp * ${SOURCEDIR}/..
 
 Restart the container
