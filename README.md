@@ -141,7 +141,7 @@ Execute the following code
     cd ${RECOVER}
     mv db* db.sqlite3
     sudo mkdir ${SOURCEDIR} 
-    cp * ${SOURCEDIR}/..
+    sudo cp * ${SOURCEDIR}/..
 
 Restart the container
     
