@@ -82,12 +82,14 @@ Now you need to edit the `dropbox_sync\CONFIG` file:
     export UPLOADER=./dropbox_uploader.sh
     export SOURCEDIR=<backup folder in docker volume>
     export REMOTE_FOLDER=<remote subdirectory on Dropbox>
+    export USR=ubuntu
 
 - **PWD**: Relative path to the file containing the encryption/decryption password.
 - **RECOVER**: A relative folder path where to save restored backups. (will be created if not existent)
 - **UPLOADER**: A relative path to the uploader script
 - **SOURCEDIR**: The __absolute__ path to the backup folder inside the docker volume.
 - **REMOTE_FOLDER**: The subfolder on Dropbox where to save the backups. The path is relative to the application folder specified in the Dropbox configuration.
+- **USR**: Is the name of the user which has set the dropbox sync credentials.
 
 Example of `SOURCEDIR`:
 
@@ -100,7 +102,7 @@ To ensure that the backups are saved on Dropbox automatically, just add a cron e
 How to do this depends on your system.  
 On Ubuntu Server 21.04 for Raspberry:
 
-    crontab -e
+    sudo crontab -e
 
 Paste the following code and save the file
 
@@ -108,7 +110,8 @@ Paste the following code and save the file
     0 * * * * /<path_to_repo_clone>/dropbox_sync/sync_backups.sh
     
 
-> ⚠️ Make sure that the file has a trailing newline!!  
+> ⚠️ Make sure that the file has a trailing newline!!
+> ⚠️ Make sure that the user for which you setup the crontab has access to all the necessary folders!
 > The [cronjob](https://man7.org/linux/man-pages/man5/crontab.5.html) above uploads the files every hour. You can modify the interval according to your needs
 
 ### Restore backups
