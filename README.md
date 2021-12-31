@@ -149,11 +149,7 @@ Execute the following code
 Restart the container
     
     docker start container_name
-    
 
-#### Restore online
-
-TODO
 
 ## Notes
 The repository is based on [vaultwarden/server](https://hub.docker.com/r/vaultwarden/server) on docker hub
