@@ -1,19 +1,25 @@
 # Vaultwarden_backup
+
 The repository contains a modified version of the bitwarden_rs image to implement a periodic backup feature
 
 ## Objective
+
 - Practice editing docker images
-- Practice using an automatic documentation generator
 
 ## System
+
 The container has been deployed on a raspberry Pi 3B+
+
 ### Requirements
+
 - Docker
 - Portainer (optional)
 - Openssl
 
 ## How to
+
 ### Configure and build the Docker image
+
 The Dockerfile has a few configurable environmental variables that can be configured.
 ```sh
 ENV BKUP_AT_MIN=0,30
@@ -33,7 +39,7 @@ ENV LAST_N_BCKUPS=9
 for other environmental variables to set, refer to the original [vaultwarden/server](https://hub.docker.com/r/vaultwarden/server) documentation.
 (for example, `SIGNUPS_ALLOWED`=false to disable logins or `ADMIN_TOKEN`=token to give access to the admin page)
 
-From the project directory it's possible to build the image with the following command:
+From the _project directory_ it's possible to build the image with the following command:
 ```sh
 docker build --rm -t vaultwarden_backup .
 ```
@@ -42,6 +48,7 @@ docker build --rm -t vaultwarden_backup .
 . Sets the context of the build to the current directory
 
 ### Step 2:
+
 Create a volume, either from portainer or from the command line.
 This is necessary to expose the backups to the local machine.
 
@@ -50,6 +57,7 @@ Next run a container using the image and volume that we just prepared
 ```sh
 docker run -d --restart always -v volume_name:/data -p XXX:80 --name container_name image_name
 ```
+
 -d runs the container in detached mode
 -v specifies the volume (__volume_name__) to mount in the container internal directory /data
 -p publishes the container port 80 on the host port __XXX__
@@ -150,6 +158,28 @@ Restart the container
     
     docker start container_name
 
+
+## Updates
+
+Remember to keep the image updated!  
+
+From the _project directory_ rebuild the image pulling the latest dependencies
+
+```sh
+docker build --rm --no-cache --pull -t vaultwarden_backup .
+```
+
+now stop the container and run it again with the new updated image
+
+```sh
+docker stop container_name
+docker rm container_name
+docker run -d --restart always -v volume_name:/data -p XXX:80 --name container_name image_name
+```
+
+> If you don't remember, you can recover the volume_name, container_name and port with these commands:
+> docker volume ls
+> docker container ls --format "{{.Names}} {{.Ports}}"
 
 ## Notes
 The repository is based on [vaultwarden/server](https://hub.docker.com/r/vaultwarden/server) on docker hub
