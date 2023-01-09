@@ -1,4 +1,4 @@
-FROM vaultwarden/server:latest
+FROM vaultwarden/server:1.27.0
 
 WORKDIR /
 
@@ -23,6 +23,7 @@ RUN chmod 755 /entry.sh
 ADD backup.sh /backup.sh
 RUN chmod 755 /backup.sh
 
-# Copy the entrypoint and run an helper script as the command
-ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+#COPY --from=init /dumb-init /usr/bin/
+
+# Run the helper script as the final command
 CMD ["/entry.sh"]
